@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe Brecheret::Storage::Adapters::AwsS3 do
   let(:instance) { described_class.new }
 
@@ -23,6 +25,7 @@ describe Brecheret::Storage::Adapters::AwsS3 do
 
     it 'realiza o upload' do
       expect(mocked_resource).to receive(:bucket).with(base_folder.to_s)
+      expect(mocked_bucket).to receive(:object).with('arquivo1')
       expect(mocked_s3_object).to receive(:upload_file).with(file_to_upload)
 
       upload

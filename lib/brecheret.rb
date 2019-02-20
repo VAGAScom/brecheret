@@ -3,6 +3,7 @@ require_relative './brecheret/storage/adapters/aws_s3'
 
 module Brecheret
   UPLOAD_FOLDER = ENV['UPLOAD_FOLDER'] || '/files'
+  FILTER = Regexp.new(ENV['FILTER_REGEXP'] || '.*')
 
   def self.root_path
     @root_path ||= Pathname.new(`git rev-parse --show-toplevel`.chomp)
